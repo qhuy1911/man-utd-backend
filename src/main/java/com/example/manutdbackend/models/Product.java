@@ -12,6 +12,9 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
@@ -28,7 +31,8 @@ public class Product {
 
     public Product() {}
 
-    public Product(String description, String image, int price) {
+    public Product(String name, String description, String image, int price) {
+        this.name = name;
         this.description = description;
         this.image = image;
         this.price = price;
@@ -36,6 +40,14 @@ public class Product {
 
     public Long getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
