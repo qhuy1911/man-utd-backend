@@ -33,4 +33,36 @@ public class PlayerController {
                 .orElseThrow(() -> new ResourceNotFoundException("Not found PLAYER with id = " + id));
         return new ResponseEntity<>(player, HttpStatus.OK);
     }
+
+    @GetMapping("/players/goalkeeper")
+    public ResponseEntity<List<Player>> getGoalkeepersPlayers() {
+        List<Player> players = playerRepository.findGoalkeeperPlayers();
+        if (players.isEmpty())
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(players, HttpStatus.OK);
+    }
+
+    @GetMapping("/players/defender")
+    public ResponseEntity<List<Player>> getDefenderPlayers() {
+        List<Player> players = playerRepository.findDefenderPlayers();
+        if (players.isEmpty())
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(players, HttpStatus.OK);
+    }
+
+    @GetMapping("/players/midfielder")
+    public ResponseEntity<List<Player>> getMidfielderPlayers() {
+        List<Player> players = playerRepository.findMidfielderPlayers();
+        if (players.isEmpty())
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(players, HttpStatus.OK);
+    }
+
+    @GetMapping("/players/forward")
+    public ResponseEntity<List<Player>> getForwardPlayers() {
+        List<Player> players = playerRepository.findForwardPlayers();
+        if (players.isEmpty())
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(players, HttpStatus.OK);
+    }
 }
