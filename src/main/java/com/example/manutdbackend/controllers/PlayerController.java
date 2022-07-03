@@ -58,7 +58,7 @@ public class PlayerController {
         return new ResponseEntity<>(players, HttpStatus.OK);
     }
 
-    @GetMapping("/players/forward")git 
+    @GetMapping("/players/forward")
     public ResponseEntity<List<Player>> getForwardPlayers() {
         List<Player> players = playerRepository.findForwardPlayers();
         if (players.isEmpty())
