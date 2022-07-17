@@ -9,8 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -30,6 +30,7 @@ public class ArticleController {
         articleRepository.findAll().forEach(articles::add);
         if (articles.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        Collections.reverse(articles);
         return new ResponseEntity<>(articles, HttpStatus.OK);
     }
 

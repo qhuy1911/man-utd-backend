@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000/")
@@ -29,6 +30,7 @@ public class ProductController {
         productRepository.findAll().forEach(products::add);
         if (products.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        Collections.reverse(products);
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
