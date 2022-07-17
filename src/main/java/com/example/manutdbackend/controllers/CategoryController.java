@@ -31,7 +31,7 @@ public class CategoryController {
     public ResponseEntity<Category> getCategoryById(@PathVariable("id") Long id) {
         Category category = categoryRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Not found CATEGORY with id = " + id));
-        return new ResponseEntity<>(category, HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(category, HttpStatus.OK);
     }
 
     @PostMapping("/categories")
