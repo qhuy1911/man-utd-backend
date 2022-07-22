@@ -20,7 +20,7 @@ public class Order {
     private boolean status;
 
     @Column(name = "total")
-    private int price;
+    private int total;
 
     @ManyToOne()
     @JoinColumn(name = "user_id", nullable = false)
@@ -32,7 +32,7 @@ public class Order {
     public Order(Date orderDate, boolean status, int price) {
         this.orderDate = orderDate;
         this.status = status;
-        this.price = price;
+        this.total = price;
     }
 
     public Long getId() {
@@ -55,12 +55,12 @@ public class Order {
         this.status = status;
     }
 
-    public int getPrice() {
-        return price;
+    public int getTotal() {
+        return total;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setTotal(int price) {
+        this.total = price;
     }
 
     public User getUser() {
