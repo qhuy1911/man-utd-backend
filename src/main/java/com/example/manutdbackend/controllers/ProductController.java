@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000/")
@@ -30,6 +31,37 @@ public class ProductController {
         productRepository.findAll().forEach(products::add);
         if (products.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        Collections.reverse(products);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    @GetMapping("/products/priceAsc")
+    public ResponseEntity<List<Product>> getAllProductsByPriceAsc() {
+        List<Product> products = new ArrayList<>();
+        productRepository.findAll().forEach(products::add);
+        if (products.isEmpty())
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        Collections.sort(products, new Comparator<Product>() {
+            @Override
+            public int compare(Product o1, Product o2) {
+                return Integer.compare(o1.getPrice(), o2.getPrice());
+            }
+        });
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    @GetMapping("/products/priceDesc")
+    public ResponseEntity<List<Product>> getAllProductsByPriceDesc() {
+        List<Product> products = new ArrayList<>();
+        productRepository.findAll().forEach(products::add);
+        if (products.isEmpty())
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        Collections.sort(products, new Comparator<Product>() {
+            @Override
+            public int compare(Product o1, Product o2) {
+                return Integer.compare(o1.getPrice(), o2.getPrice());
+            }
+        });
         Collections.reverse(products);
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
