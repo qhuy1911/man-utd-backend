@@ -66,6 +66,7 @@ public class OrderController {
         Order order = orderRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Not found ORDER with id =" + id));
         order.setStatus(!order.isStatus());
+        orderRepository.save(order);
         return new ResponseEntity<>(order, HttpStatus.OK);
     }
 }
